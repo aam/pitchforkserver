@@ -45,8 +45,11 @@ public class ServerTest {
      */
     @Test
     public void testGetIt() {
-        String responseMsg = target.path("releases").path("ids").path("R01").request().get(String.class);
-        assertEquals("{\"release\":{\"name\":\"R01\",\"author\":\"Vasya Pupkin\"}}", responseMsg);
+        String responseMsg = target.path("releases")
+            .path("list")
+            //.path("ids").path("R01")
+            .request().get(String.class);
+        assertEquals("{\"release\":{\"name\":\"R01\",\"implementationPlan\":\"Vasya Pupkin\"}}", responseMsg);
     }
 
 }

@@ -4,9 +4,12 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jettison.JettisonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,8 +39,8 @@ public class Server {
   }
 
   public static ResourceConfig createServer() {
-    return new ResourceConfig().
-        register(new JettisonFeature()).
-        packages("com.aprelev.pitchfork.server");
+    return new ResourceConfig()
+        .register(new JettisonFeature())
+        .packages("com.aprelev.pitchfork.server");
   }
 }
