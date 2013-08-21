@@ -71,12 +71,20 @@ public class ReleasesResource {
               new DevJIRA("DevJIRA-10",
                   new Branch("Branch-01", "Vasya Pupkin"),
                   branch02,
-                  new Branch("Branch-03", "Ioann"))),
+                  new Branch("Branch-03", "Ioann")),
+              new DevJIRA("DevJIRA-11",
+                  new Branch("Branch-05", "Vasya Pupkin"),
+                  branch02,
+                  new Branch("Branch-07", "Ioann"))),
           new DepJIRA("DepJIRA-02", "Gorlym",
               new DevJIRA("DevJIRA-20",
                   new Branch("Branch-21", "Seva"),
                   branch02,
-                  new Branch("Branch-23", "Stetoskop")))
+                  new Branch("Branch-23", "Stetoskop")),
+              new DevJIRA("DevJIRA-21",
+                  new Branch("Branch-25", "Seva"),
+                  branch02,
+                  new Branch("Branch-27", "Stetoskop")))
           );
       releases.put(r.name, r);
       releases.put("R05", new Release("R05", "Implementation is very important", "ERA this"));
