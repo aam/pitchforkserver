@@ -1,10 +1,18 @@
 package com.aprelev.pitchfork.server;
 
+import org.glassfish.jersey.client.filter.HttpBasicAuthFilter;
+import org.glassfish.jersey.jsonp.JsonProcessingFeature;
+import org.glassfish.jersey.media.json.JsonJaxbFeature;
+import sun.org.mozilla.javascript.internal.json.JsonParser;
+
 import javax.inject.Singleton;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
@@ -17,6 +25,9 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 
 /**
  * Created by alexander on 8/18/13
@@ -65,6 +76,17 @@ public class ReleasesResource {
   private Map<String, Release> getReleases() {
     if (releases == null) {
       releases = new HashMap<String, Release>();
+
+      Client c = ClientBuilder.newClient();
+      c.register(new HttpBasicAuthFilter("userid", "password"));
+      c.register(JsonProcessingFeature.class);
+
+      WebTarget target = c.target("http://dell.aprelev.com:8080/rest/api/2/");
+      String versionsMsg = target.path("project").path("PIT").path("versions").request().get(String.class);
+
+      JsonObject jiras = target.path("search").queryParam("jql", "fixVersion=R1").request().get(JsonObject.class);
+      JsonArray issues = jiras.getJsonArray("issues");
+
       Branch branch02 = new Branch("Branch-02", "Kate");
       Release r = new Release("R01", "Go for best implementation", "This is my era plan",
           new DepJIRA("DepJIRA-01", "releaseNotes for DepJIRA-01.txt",
