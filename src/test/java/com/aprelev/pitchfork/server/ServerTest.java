@@ -49,7 +49,7 @@ public class ServerTest {
             .path("list")
             //.path("ids").path("R01")
             .request().get(String.class);
-        assertEquals("{\"release\":{\"name\":\"R01\",\"implementationPlan\":\"Vasya Pupkin\"}}", responseMsg);
+      assertEquals("{\"webResourceList\":{\"resources\":[{\"description\":\"R05\",\"url\":\"http:\\/\\/localhost:8887\\/pitchfork\\/releases\\/ids\\/R05\"},{\"description\":\"R10\",\"url\":\"http:\\/\\/localhost:8887\\/pitchfork\\/releases\\/ids\\/R10\"},{\"description\":\"R01\",\"url\":\"http:\\/\\/localhost:8887\\/pitchfork\\/releases\\/ids\\/R01\"}]}}", responseMsg);
     }
 
 }
