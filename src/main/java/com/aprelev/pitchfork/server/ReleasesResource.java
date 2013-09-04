@@ -2,8 +2,6 @@ package com.aprelev.pitchfork.server;
 
 import org.glassfish.jersey.client.filter.HttpBasicAuthFilter;
 import org.glassfish.jersey.jsonp.JsonProcessingFeature;
-import org.glassfish.jersey.media.json.JsonJaxbFeature;
-import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 import javax.inject.Singleton;
 import javax.json.JsonArray;
@@ -13,14 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 import java.util.Formatter;
 import java.util.HashMap;
 import java.util.LinkedList;
